@@ -1,7 +1,20 @@
 # CarND-Controls-MPC
 Self-Driving Car Engineer Nanodegree Program
 
----
+## Rubirc Points
+
+### The Model
+In the used kinematic model the vehicle state is represented in a space of dimension 6. The coordinates are vehicle's x and y position, orientation angle, velocity, cross-track error and orientation angle error. Actuator outputs are acceleration and steering angle. 
+
+### Timestep Length and Elapsed Duration (N & dt)
+In order to have a good prediction it is important to find proper values for N (bigger = better) and dt (smaller = better). After few trials (for example N=20&dt=0.05, N=5&dt=0.2) I used the value suggested during lesson, i.e. N = 10 and dt = 0.1s. These values mean that the optimizer is considering a one-second duration in which to determine a corrective trajectory.
+
+### Polynomial Fitting and MPC Preprocessing
+The  waypoints are first transformed into the vehicle's perspective and then they are fit with polynomial function.
+
+### Model Predictive Control with Latency
+In order to have a better control on the street curves, an additional cost penalizing the combination of velocity and delta has been included in the cost function.
+Also the latency has been taken into account by modifying the equations to consider the actuators value from a previous timestep.
 
 ## Dependencies
 
